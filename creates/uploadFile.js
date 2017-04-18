@@ -12,21 +12,21 @@ const uploadFile = (z, bundle) => {
     formData.append('name', bundle.inputData.name);
   }
 
-  const promise = z.request({
-    url: 'https://zapier.webscript.io/platform-example-app/upload',
-    method: 'POST',
-    body: formData,
-  });
-  return promise.then((response) => {
-    const file = response.json;
+  return z.request({
+      url: 'https://zapier.webscript.io/platform-example-app/upload',
+      method: 'POST',
+      body: formData,
+    })
+    .then((response) => {
+      const file = response.json;
 
-    // Make it possible to get the actual file contents if necessary (no need to make the request now)
-    file.file = z.dehydrate(hydrators.downloadFile, {
-      fileId: file.id,
+      // Make it possible to get the actual file contents if necessary (no need to make the request now)
+      file.file = z.dehydrate(hydrators.downloadFile, {
+        fileId: file.id,
+      });
+
+      return file;
     });
-
-    return file;
-  });
 };
 
 module.exports = {

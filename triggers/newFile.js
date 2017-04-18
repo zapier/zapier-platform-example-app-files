@@ -6,23 +6,23 @@ const listFiles = (z, bundle) => {
 
   // You can build requests and our client will helpfully inject all the variables
   // you need to complete. You can also register middleware to control this.
-  const promise = z.request({
-    url: 'http://57b20fb546b57d1100a3c405.mockapi.io/api/files',
-  });
 
   // You may return a promise or a normal data structure from any perform method.
-  return promise.then((response) => {
-    const files = JSON.parse(response.content);
+  return z.request({
+      url: 'http://57b20fb546b57d1100a3c405.mockapi.io/api/files',
+    })
+    .then((response) => {
+      const files = JSON.parse(response.content);
 
-    // Make it possible to get the actual file contents if necessary (no need to make the request now)
-    return files.map((file) => {
-      file.file = z.dehydrate(hydrators.downloadFile, {
-        fileId: file.id,
+      // Make it possible to get the actual file contents if necessary (no need to make the request now)
+      return files.map((file) => {
+        file.file = z.dehydrate(hydrators.downloadFile, {
+          fileId: file.id,
+        });
+
+        return file;
       });
-
-      return file;
     });
-  });
 };
 
 // We recommend writing your triggers separate like this and rolling them
