@@ -10,6 +10,7 @@ const uploadFile = (z, bundle) => {
 
   // file will in fact be an url where the file data can be downloaded from
   // which we do via a stream created by NPM's request package
+  // (form-data doesn't play nicely with z.request)
   formData.append('file', request(bundle.inputData.file));
 
   if (bundle.inputData.name) {
