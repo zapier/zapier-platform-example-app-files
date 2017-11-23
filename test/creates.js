@@ -3,7 +3,7 @@ const zapier = require('zapier-platform-core');
 const App = require('../index');
 const appTester = zapier.createAppTester(App);
 
-describe.only('creates', () => {
+describe('creates', () => {
 
   describe('uploadFile', () => {
     it('should upload file without name', (done) => {
