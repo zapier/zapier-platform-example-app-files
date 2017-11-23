@@ -18,8 +18,7 @@ const uploadFile = (z, bundle) => {
   }
 
   return z.request({
-      // url: 'https://1i94uigjze.execute-api.us-east-1.amazonaws.com/api/upload',
-      url: 'http://localhost:8000/upload',
+      url: 'https://1i94uigjze.execute-api.us-east-1.amazonaws.com/api/upload',
       method: 'POST',
       form: formData,
     })
