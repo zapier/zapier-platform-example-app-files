@@ -20,7 +20,7 @@ const uploadFile = (z, bundle) => {
   return z.request({
       url: 'https://1i94uigjze.execute-api.us-east-1.amazonaws.com/api/upload',
       method: 'POST',
-      form: formData,
+      body: formData,
     })
     .then((response) => {
       const file = response.json;
